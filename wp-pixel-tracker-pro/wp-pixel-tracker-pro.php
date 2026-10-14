@@ -25,9 +25,6 @@ if (!defined('WP_PIXEL_TRACKER_URL')) {
 if (!defined('WP_PIXEL_TRACKER_BASENAME')) {
     define('WP_PIXEL_TRACKER_BASENAME', plugin_basename(__FILE__));
 }
-if (!defined('WP_PIXEL_TRACKER_LICENSE_KEY')) {
-    define('WP_PIXEL_TRACKER_LICENSE_KEY', 'PIXELTRACKER-PRO-8819-42C1-90E3');
-}
 
 // Load includes safely
 $wpps_includes = array(
@@ -36,7 +33,8 @@ $wpps_includes = array(
     WP_PIXEL_TRACKER_DIR . 'includes/class-utm-tracker.php',
     WP_PIXEL_TRACKER_DIR . 'includes/class-super-pack.php',
     WP_PIXEL_TRACKER_DIR . 'includes/class-pixel-injector.php',
-    WP_PIXEL_TRACKER_DIR . 'includes/updater.php'
+    WP_PIXEL_TRACKER_DIR . 'includes/updater.php',
+    WP_PIXEL_TRACKER_DIR . 'includes/licensing.php'
 );
 
 foreach ($wpps_includes as $file) {

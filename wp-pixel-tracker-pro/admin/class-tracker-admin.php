@@ -19,7 +19,6 @@ if (!class_exists('WPPixelTracker_Admin')) {
             add_action('wp_ajax_wpps_save_settings', array($this, 'ajax_save_settings'));
             add_action('wp_ajax_wpps_save_custom_event', array($this, 'ajax_save_custom_event'));
             add_action('wp_ajax_wpps_delete_custom_event', array($this, 'ajax_delete_custom_event'));
-            add_action('wp_ajax_wpps_activate_license', array($this, 'ajax_activate_license'));
             add_action('wp_ajax_wpps_clear_logs', array($this, 'ajax_clear_logs'));
             add_action('wp_ajax_wpps_log_event', array($this, 'ajax_log_event_fire'));
             add_action('wp_ajax_nopriv_wpps_log_event', array($this, 'ajax_log_event_fire'));
@@ -132,6 +131,9 @@ if (!class_exists('WPPixelTracker_Admin')) {
         }
 
         public function render_license_page() {
+            if (function_exists('wpps_check_license_status')) {
+                wpps_check_license_status(true);
+            }
             require_once WP_PIXEL_TRACKER_DIR . 'admin/views/license-view.php';
         }
 
@@ -247,24 +249,6 @@ if (!class_exists('WPPixelTracker_Admin')) {
                 wp_send_json_success(array('message' => 'Evento excluído com sucesso!'));
             } else {
                 wp_send_json_error(array('message' => 'ID inválido.'));
-            }
-        }
-
-        public function ajax_activate_license() {
-            check_ajax_referer('wpps_admin_nonce', 'nonce');
-
-            if (!current_user_can('manage_options')) {
-                wp_send_json_error(array('message' => 'Permissão negada.'));
-            }
-
-            $input_key = isset($_POST['license_key']) ? trim(sanitize_text_field($_POST['license_key'])) : '';
-
-            if ($input_key === WP_PIXEL_TRACKER_LICENSE_KEY) {
-                update_option('wp_pixel_tracker_is_activated', 1);
-                update_option('wp_pixel_tracker_activated_key', $input_key);
-                wp_send_json_success(array('message' => 'Chave validada com sucesso! WP Pixel & Tracking Pro totalmente ativado.'));
-            } else {
-                wp_send_json_error(array('message' => 'Chave de ativação incorreta. Verifique a chave e tente novamente.'));
             }
         }
     }

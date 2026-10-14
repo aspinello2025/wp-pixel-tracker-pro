@@ -336,6 +336,30 @@
                 }
             });
         });
+
+        $('#wpps-deactivate-btn').on('click', function(e) {
+            e.preventDefault();
+
+            if (!confirm('Deseja realmente desativar a licença neste domínio? Isso liberará a ativação no seu servidor WooCommerce para uso em outro site.')) {
+                return;
+            }
+
+            var btn = $(this);
+            btn.prop('disabled', true).text('Desativando no servidor...');
+
+            $.post(WPPixelVars.ajax_url, {
+                action: 'wpps_deactivate_license',
+                nonce: WPPixelVars.nonce
+            }, function(res) {
+                if (res.success) {
+                    alert(res.data.message);
+                    location.reload();
+                } else {
+                    alert(res.data.message || 'Erro ao desativar licença.');
+                    btn.prop('disabled', false).html('<span class="dashicons dashicons-dismiss"></span> Desativar Licença neste Domínio');
+                }
+            });
+        });
     }
 
 })(jQuery);
