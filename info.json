@@ -1,0 +1,11 @@
+{
+    "name": "WP Pixel & Tracking Pro",
+    "slug": "wp-pixel-tracker-pro",
+    "version": "1.7.0",
+    "url": "https://agenciaintegrar.com/loja/",
+    "download_url": "https://raw.githubusercontent.com/aspinello2025/wp-pixel-tracker-pro/main/wp-pixel-tracker-pro.zip",
+    "sections": {
+        "description": "Gerenciador profissional de pixels para WordPress & WooCommerce: Meta CAPI (Server-Side), Google Analytics 4, TikTok Pixel, Google Ads, Múltiplos Pixels, UTM Builder, Desativação por Página, Custom Thank You Pages e Módulo Super Pack.",
+        "changelog": "<h4>1.7.0</h4><ul><li>Versão Pro otimizada com suporte a Meta Conversions API (CAPI Server-Side).</li><li>Múltiplos pixels para Meta, GA4, TikTok e Google Ads.</li><li>Gerador e rastreador de UTMs de alta precisão.</li><li>Suporte a atualização automática e download direto no WordPress via GitHub.</li></ul>"
+    }
+}
